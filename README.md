@@ -20,22 +20,36 @@ to have the so-far-excellent disk performance degraded by way-too-slow isWritabl
 
 ## Method signature:
 
+```
 boolean isWritable(int blockSize, int fileSize, Set<Integer> occupiedSectors)
+```
 
 ## Constraints:
 
-blockSize will be between 1 and 1,000,000, inclusive.
-fileSize will be between 1 and blockSize, inclusive.
-occupiedSectors will contain between 1 and 100,000 elements, inclusive.
-Each element of occupiedSectors will be between 1 and blockSize, inclusive.
-Elements of occupiedSectors will be distinct.
-Expected execution time is below 10 seconds.
-Output
+* blockSize will be between 1 and 1,000,000, inclusive.
+* fileSize will be between 1 and blockSize, inclusive.
+* occupiedSectors will contain between 1 and 100,000 elements, inclusive.
+* Each element of occupiedSectors will be between 1 and blockSize, inclusive.
+* Elements of occupiedSectors will be distinct.
+* Expected execution time is below 10 seconds.
+
+## Output
 
 A boolean result telling if it is possible to store the file on a given disk block.
 
 ## Examples
 
-isWritable(1, 1, []) returns true as there is exactly 1 free sector which is enough to store the file of size 1
-isWritable(1, 1, [1]) returns false as there's no free disk space at all
-isWritable(4, 2, [1, 4]) returns true as the file of size 2 can be stored on sectors 2 and 3
+* Case 1: returns true as there is exactly 1 free sector which is enough to store the file of size 1
+```
+isWritable(1, 1, [])
+```
+
+* Case 2: returns false as there's no free disk space at all
+```
+isWritable(1, 1, [1])
+```
+
+* Case 3: returns true as the file of size 2 can be stored on sectors 2 and 3
+```
+isWritable(4, 2, [1, 4]) 
+```
